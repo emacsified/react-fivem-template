@@ -16,8 +16,8 @@ const App = () => {
   return (
   <div>
     <h1 style={{fontFamily: "Pricedown", visibility: hidden ? "hidden" : "visible"}}>Hello world</h1>
-
     <GlobalStyle />
+
   </div>
   )
 }
