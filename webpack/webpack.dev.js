@@ -19,6 +19,12 @@ module.exports = require('./webpack.common')({
     }),
   ],
 
+  devServer: {
+    liveReload: true,
+    hot: false,
+    watchContentBase: true
+  },
+
   // Emit a source map for easier debugging
   // See https://webpack.js.org/configuration/devtool/#devtool
   // devtool: 'eval-source-map',
@@ -26,4 +32,5 @@ module.exports = require('./webpack.common')({
   performance: {
     hints: false,
   },
+
 });

@@ -1,28 +1,8 @@
-import { createStore, compose } from 'redux';
-import createReducer from './reducers';
+import create from 'zustand';
 
-export default function configureStore(initialState) {
-  let composeEnhancers = compose;
+const useStore = create(set => ({
+  setHidden: hidden => set({ hidden }),
+  hidden: false,
+}));
 
-  if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
-    if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
-      composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
-    }
-  }
-
-  const enhancers = [];
-
-  const store = createStore(
-    createReducer(),
-    initialState,
-    composeEnhancers(...enhancers),
-  );
-
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      store.replaceReducer(createReducer(store.injectedReducers));
-    });
-  }
-
-  return store;
-}
+export default useStore;

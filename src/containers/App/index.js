@@ -1,27 +1,25 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
+import useStore from '../../configureStore'
 import GlobalStyle from '../../globalStyles';
 
 const H1 = styled('h1')`
   font-family: Pricedown;
-  visibility: ${props => props.hidden};
 `;
 
-const App = ({ hidden }) => (
+const App = () => {
+  const { hidden } = useStore(state => state)
+
+  return (
   <div>
-    <H1 hidden={hidden}>Hello world</H1>
+    <h1 style={{fontFamily: "Pricedown", visibility: hidden ? "hidden" : "visible"}}>Hello world</h1>
+
     <GlobalStyle />
   </div>
-);
+  )
+}
 
-App.propTypes = {
-  hidden: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = state => ({ hidden: state.app.hidden });
-
-export default connect(mapStateToProps)(App);
+export default App;
