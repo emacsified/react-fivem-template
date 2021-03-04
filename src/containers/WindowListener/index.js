@@ -14,8 +14,12 @@ const WindowListener = props => {
   const { setHidden } = useStore(state => state);
   const handleEvent = event => {
     const { data } = event.data;
-    const { hidden } = data;
-    setHidden(hidden);
+    const { action } = data;
+    if (action == 'show') {
+      setHidden(false);
+    } else {
+      setHidden(true);
+    }
   };
   return <>{props.children}</>;
 };
